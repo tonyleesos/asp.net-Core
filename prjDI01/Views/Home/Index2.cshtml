@@ -1,0 +1,24 @@
+﻿@model IEnumerable<prjDI01.Models.Product>
+
+    @{
+        ViewData["Title"] = "優質圖書";
+    }
+
+<div class="container mt-3">
+    <form asp-action="Index2">
+        <div class="input-group">
+            <a asp-action="Index2" asp-route-id="1" class="btn btn-success">單價遞增</a>
+            <a asp-action="Index2" asp-route-id="2" class="btn btn-success">單價遞減</a>
+            <span class="input-group-text">書籍關鍵字</span>
+            <input type="text" class="form-control" name="keyword"/>
+            <input type="submit" value="查詢" class="btn btn-success" />
+        </div>
+    </form>
+    
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            @await Html.PartialAsync("_ProductPartial",item)            
+        }
+    </div>
+</div>

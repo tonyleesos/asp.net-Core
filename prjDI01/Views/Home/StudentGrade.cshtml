@@ -1,0 +1,89 @@
+﻿@model IEnumerable<prjDI01.Models.Student>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>tibame學員成績單</title>
+</head>
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Chi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Eng)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Math)
+                </th>
+                <th>平均</th>
+                <th>評語</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Chi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Eng)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Math)
+                    </td>
+                    <td>
+                        @GatAvg(item.Chi,item.Eng,item.Math)
+                    </td>
+                    <td>
+                        @GetMsg(GatAvg(item.Chi,item.Eng,item.Math))
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @{
+        int GatAvg(int chi,int eng,int math)
+        {
+            int avg = (chi + eng + math) / 3;
+            return avg;
+        }
+
+        string GetMsg(int score)
+        {
+            string msg = "";
+            if(score < 60)
+            {
+                msg = "請立即連絡專員輔導";
+            }
+            return msg;
+        }
+    }
+
+</body>
+</html>

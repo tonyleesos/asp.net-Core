@@ -1,0 +1,44 @@
+﻿@model IEnumerable<prjDI01.Models.TEmployee>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>員工紀錄</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>編號</td>
+                <td>姓名</td>
+                <td>性別</td>
+                <td>信箱</td>
+                <td>薪資</td>
+                <td>雇用日期</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FEmpId</td>
+                    <td>@item.FName</td>
+                    <td>@item.FGender</td>
+                    <td>@item.FMail</td>
+                    <td>@item.FSalary</td>
+                    <td>@{
+                            DateTime date = DateTime.Parse(item.FEmploymentDate.ToString());
+                            <text>@date.ToShortDateString()</text>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,64 @@
+﻿@model prjDI01.Models.Member
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>會員註冊</title>
+</head>
+<body>
+    <h4>會員註冊</h4>
+    <form asp-action="RegisterIndex" method="post">
+        <div asp-validation-summary="All"></div>
+        <div>
+            <label asp-for="Uid"></label>
+            <input asp-for="Uid" />
+            <span asp-validation-for="Uid"></span>
+        </div>
+        <div>
+            <label asp-for="Pwd"></label>
+            <input asp-for="Pwd" type="password"/>
+            <span asp-validation-for="Pwd"></span>
+        </div>
+        <div>
+            <label asp-for="RePwd"></label>
+            <input asp-for="RePwd" type="password"/>
+            <span asp-validation-for="RePwd"></span>
+        </div>
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="Website"></label>
+            <input asp-for="Website" />
+            <span asp-validation-for="Website"></span>
+        </div>
+        <div>
+            <label asp-for="Salary"></label>
+            <input asp-for="Salary" />
+            <span asp-validation-for="Salary"></span>
+        </div>
+        <div>
+            <input type="submit" value="註冊" />
+        </div>
+    </form>
+    <div>
+        @Html.Raw(ViewBag.Show)
+    </div>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+﻿@model prjDI01.Models.Product
+
+@{
+    string imageName= $"{Model.Id}.jpg";
+}
+
+ 
+<div class="col-12 col-md-3 mt-3">
+    <div class="img-thumbnail">
+        <img src="~/Images/@imageName" style="width:100%">
+        <h4 class="text-info">書號:@Model.Id</h4>
+        <h6>書名:@Model.Name</h6>
+        <p>類型:@Model.Classification</p>
+        <p>單價:@Model.Price</p>
+        <p><a href="#" class="btn btn-primary">放入購物車</a></p>
+    </div>
+</div>
