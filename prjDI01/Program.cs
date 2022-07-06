@@ -14,7 +14,7 @@ builder.Services.AddScoped<IProductRepository, ProductDiscountRepository>();
 
 var app = builder.Build();
 app.UseStaticFiles();
-app.MapControllerRoute(name: "default", pattern: "{Controller=Home}/{Action=Index2}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{Controller=Employee}/{Action=Index}/{id?}");
 
 // Configure the HTTP request pipeline.
 //if (!app.Environment.IsDevelopment())

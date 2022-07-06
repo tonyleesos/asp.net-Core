@@ -1,0 +1,69 @@
+﻿@model IEnumerable<prjDI01.Models.TEmployee>
+
+@{
+    ViewData["Title"] = "員工列表";
+    Layout = "~/Views/Shared/_LayoutEmp.cshtml";
+}
+
+<h1>員工列表</h1>
+
+<p>
+    <a asp-action="Create">員工新增</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FEmpId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FGender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FEmploymentDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FEmpId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FGender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FSalary)
+                </td>
+                <td>
+                    @{
+                        DateTime date = DateTime.Parse(item.FEmploymentDate.ToString());
+                    }
+                    @date.ToShortDateString();
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.FEmpId" class="btn btn-warning">編輯</a>
+                    <a asp-action="Delete" asp-route-id="@item.FEmpId" class="btn btn-danger" onclick="return confirm('確定要刪除資料 @item.FEmpId 員工嗎? ')">刪除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
