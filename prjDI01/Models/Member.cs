@@ -2,7 +2,7 @@
 
 namespace prjDI01.Models
 {
-    public class Member
+    public partial class Member
     {
         [Display(Name="帳號")]
         [Required(ErrorMessage ="帳號必填")]

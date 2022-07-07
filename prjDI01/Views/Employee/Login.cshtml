@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutEmp.cshtml";
+}
+
+<h1>會員登入</h1>
+
+@using (Html.BeginForm("Login","Employee",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <p>帳號 : <input type="text" name="uid" required /></p>
+    <p>密碼 : <input type="password" name="pwd" required /></p>
+    <p><input type="submit" value="登入"/></p>
+}
+
+<h4>@ViewBag.Show</h4>
+
