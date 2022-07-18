@@ -1,14 +1,26 @@
-﻿@model IEnumerable<prjDI01.Models.Product>
-
-    @{
-        ViewData["Title"] = "優質圖書";
-    }
+﻿@using prjDI01.Models;
+@model PagedList<prjDI01.Models.Product>
+@{
+    ViewData["Title"] = "優質圖書";
+}
 
 <div class="container mt-3">
+    @{
+        var prevDisabled = !Model.HasPrevPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <div>
+        <p>第@(Model.PageIndex)頁，共@(Model.PageTotal)頁</p>
+        <p>
+            <a asp-action="Index2" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-primary  @prevDisabled">上一頁</a>
+            <a asp-action="Index2" asp-route-pageNumber="@(Model.PageIndex+1)" class="btn btn-primary  @nextDisabled">下一頁</a>
+        </p>
+    </div>
+
     <form asp-action="Index2">
         <div class="input-group">
-            <a asp-action="Index2" asp-route-id="1" class="btn btn-success">單價遞增</a>
-            <a asp-action="Index2" asp-route-id="2" class="btn btn-success">單價遞減</a>
+            <a asp-action="Index2" asp-route-id="1" class="btn btn-success" >單價遞增</a>
+            <a asp-action="Index2" asp-route-id="2" class="btn btn-success" >單價遞減</a>
             <span class="input-group-text">書籍關鍵字</span>
             <input type="text" class="form-control" name="keyword"/>
             <input type="submit" value="查詢" class="btn btn-success" />

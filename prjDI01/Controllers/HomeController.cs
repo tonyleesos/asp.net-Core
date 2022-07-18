@@ -45,8 +45,10 @@ namespace prjDI01.Controllers
             IList<Product> ? product = _repository.GetAll();
             return View(GetProducts());
         }
-        public IActionResult Index2(int id=1)
+        public IActionResult Index2(int? pageNumber, int id = 1)
         {
+            // 設定一頁幾筆
+            int pageSize = 4;
             // id = 1 遞增 id = 2 遞減           
             IList<Product> ? product = null;
             if(id == 1)
@@ -57,7 +59,7 @@ namespace prjDI01.Controllers
             {
                 product = GetProducts().OrderByDescending(x => x.Price).ToList();
             }
-            return View(product);
+            return View(PagedList<Product>.Create(product,pageNumber ?? 1,pageSize));
         }
         [HttpPost]
         public IActionResult Index2(string keyword)
